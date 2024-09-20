@@ -15,7 +15,7 @@ public class PasteListItem
 
     public DateTime ExpireDate { get; set; }
 
-    public PasteBinPrivacyEnum Private { get; set; }
+    public PasteBinPrivacy Private { get; set; }
 
     public string FormatLong { get; set; }
 
@@ -35,7 +35,7 @@ public class PasteListItem
         paste.Size = (int)xElement.Element("paste_size");
         var expireDate = (long)xElement.Element("paste_expire_date");
         paste.ExpireDate = expireDate != 0 ? DateTimeOffset.FromUnixTimeSeconds(expireDate).UtcDateTime : paste.Date;
-        paste.Private = (PasteBinPrivacyEnum)(int)xElement.Element("paste_private");
+        paste.Private = (PasteBinPrivacy)(int)xElement.Element("paste_private");
         paste.FormatLong = xElement.Element("paste_format_long").Value;
         paste.FormatShort = xElement.Element("paste_format_short").Value;
         paste.Url = xElement.Element("paste_url").Value;

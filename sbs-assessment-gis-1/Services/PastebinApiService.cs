@@ -45,7 +45,7 @@ public class PastebinApiService
     /// <param name="privacy">Visibility of paste (0 - Public, 1 - Unlisted, 2 - Private)</param>
     /// <param name="apiUserKey">API User Key</param>
     /// <returns>Paste unique key string</returns>
-    public async Task<string> CreatePaste(string pasteName, object pasteBody, PasteBinPrivacyEnum privacy, PasteBinExpirationEnum expiration, string apiUserKey)
+    public async Task<string> CreatePaste(string pasteName, object pasteBody, PasteBinPrivacy privacy, PasteBinExpiration expiration, string apiUserKey)
     {
         var body = new Dictionary<string, string>()
         {
@@ -113,18 +113,18 @@ public class PastebinApiService
         return await res.Content.ReadAsStringAsync();
     }
 
-    private static string FormatExpirationDateInput(PasteBinExpirationEnum expiration)
+    private static string FormatExpirationDateInput(PasteBinExpiration expiration)
     {
         return expiration switch
         {
-            PasteBinExpirationEnum.TenMinutes => "10M",
-            PasteBinExpirationEnum.OneHour => "1H",
-            PasteBinExpirationEnum.OneDay => "1D",
-            PasteBinExpirationEnum.OneWeek => "1W",
-            PasteBinExpirationEnum.TwoWeeks => "2W",
-            PasteBinExpirationEnum.OneMonth => "1M",
-            PasteBinExpirationEnum.SixMonths => "6M",
-            PasteBinExpirationEnum.OneYear => "1Y",
+            PasteBinExpiration.TenMinutes => "10M",
+            PasteBinExpiration.OneHour => "1H",
+            PasteBinExpiration.OneDay => "1D",
+            PasteBinExpiration.OneWeek => "1W",
+            PasteBinExpiration.TwoWeeks => "2W",
+            PasteBinExpiration.OneMonth => "1M",
+            PasteBinExpiration.SixMonths => "6M",
+            PasteBinExpiration.OneYear => "1Y",
             _ => "N",
         };
     }

@@ -51,8 +51,7 @@ namespace sbs_assessment_gis_1
             // Print list of laureates by specified criteria to console, also storing the items to create a paste with it
             // Query through JObject
             var laureates = jsonService.PrintList(1985, "medicine");
-            // Alternatively: Parse to .NET object then query
-            //var laureates = jsonService.PrintListObject(1985, "medicine");
+            // Alternatively: Parse to .NET object then query (using PrintListObject method)
 
             // Login to pastebin first
             // For simplicity, prompt the user to input their pastebin credentials here.
@@ -66,7 +65,7 @@ namespace sbs_assessment_gis_1
                 api_user_key = await pasteService.LoginPaste(credentials.username, credentials.password);
             }
 
-            var pasteUrl = await pasteService.CreatePaste("Laureates", laureates, PasteBinPrivacyEnum.Unlisted, PasteBinExpirationEnum.Never, api_user_key);
+            var pasteUrl = await pasteService.CreatePaste("Laureates", laureates, PasteBinPrivacy.Unlisted, PasteBinExpiration.Never, api_user_key);
             Console.WriteLine($"Paste created. Url: {pasteUrl}");
 
             // Delete the paste if the user exists and the paste's been created
